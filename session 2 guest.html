@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Platform Voices – Digital Platforms Guest Sessions</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F1FF;--ink:#17123F;--mut:#5d5886;--card:#fff;--line:#ddd6ff;--vio:#5B3DF5;--pink:#FF3D8B;--aqua:#0fa892;--ok:#d4f6ef;--no:#ffd9e8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 'Instrument Sans',system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque','Arial Black',sans-serif;margin:0;line-height:1.05}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--aqua);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px;align-items:center;overflow-x:auto;padding-top:10px;padding-bottom:10px}
+.logo{font:800 20px 'Bricolage Grotesque';margin-right:10px;white-space:nowrap}
+.tab{border:1px solid var(--line);background:transparent;border-radius:99px;padding:8px 16px;white-space:nowrap;font-weight:600}
+.tab[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tab:disabled{opacity:.5;cursor:not-allowed}
+.xp{margin-left:auto;font-weight:600;white-space:nowrap;padding-left:10px}
+.hero{color:#f1edff;background:radial-gradient(800px 420px at 85% 0,#ff3d8b66,transparent 60%),radial-gradient(600px 400px at 0 100%,#14c9b055,transparent 60%),linear-gradient(160deg,#17123F,#2a1a7a);padding:56px 0 64px}
+.hero h1{font-size:clamp(44px,8vw,88px);font-weight:800;letter-spacing:-.03em}
+.hero h1 span{background:linear-gradient(90deg,#ff3d8b,#ffb86b,#3df0d0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:19px;max-width:48ch;color:#d9d3ff;margin:18px 0 26px}
+.btn{border:0;border-radius:14px;padding:13px 20px;font-weight:600;background:var(--pink);color:#fff}
+.btn.s{background:var(--vio)}
+main{padding:36px 0 60px}
+h2{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.sub{color:var(--mut);max-width:62ch;margin:0 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px}
+.card.lock{opacity:.65;border-style:dashed}
+.card h3{font-size:22px;margin-bottom:6px}
+.pill{display:inline-block;font-size:13px;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--line);margin-bottom:10px}
+.games{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 20px}
+.g{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:10px 16px;font-weight:600}
+.g[aria-selected=true]{background:var(--vio);color:#fff;border-color:var(--vio)}
+.chipset{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.opt{display:block;width:100%;text-align:left;margin-top:10px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:transparent}
+.opt:hover{border-color:var(--vio)}
+.ok{background:var(--ok)!important;border-color:var(--aqua)!important}.no{background:var(--no)!important;border-color:var(--pink)!important}
+.sel{outline:3px solid var(--vio)}
+.ing{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:10px 14px;text-align:left}
+.ing[aria-pressed=true]{background:var(--vio);color:#fff;border-color:var(--vio)}
+.bad{background:#2a2250;color:#ffd9e8;padding:14px;border-radius:14px;font-family:ui-monospace,monospace;font-size:14px;margin:10px 0}
+.fb{min-height:26px;margin:12px 0;font-weight:600}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.seq{display:flex;flex-direction:column;gap:8px}
+.seq li{list-style:none;padding:10px 14px;border-radius:12px;border:1px dashed var(--line);min-height:44px}
+.seq li.f{border-style:solid;background:var(--ok);border-color:var(--aqua)}
+.shake{animation:sh .3s}@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.bar{height:10px;background:var(--line);border-radius:9px;overflow:hidden;margin:6px 0 14px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--vio));transition:width .4s}
+textarea{width:100%;padding:11px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;margin-top:6px}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-top:18px}
+.stick{padding:14px;border-radius:6px 6px 22px 6px;font-size:14px;color:#17123f;background:#ffd0e3;transform:rotate(-1.2deg)}.stick:nth-child(even){background:#c9f5ee;transform:rotate(1deg)}.stick b{display:block;font-size:12px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.bd{padding:6px 12px;border-radius:99px;background:var(--line);font-size:14px;opacity:.6}.bd.on{opacity:1;background:var(--ok)}
+body{background-image:radial-gradient(var(--line) 1.3px,transparent 1.6px);background-size:22px 22px}
+h2{display:inline-block;background:linear-gradient(transparent 64%,#ff3d8b55 64%)}
+.ticker{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;font:800 18px 'Bricolage Grotesque',sans-serif}
+.ticker span{display:inline-block;padding:12px 0;animation:tk 30s linear infinite}
+@keyframes tk{to{transform:translateX(-50%)}}
+.tab{border-width:2px}
+.btn{border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);transition:transform .1s,box-shadow .1s}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:none}
+.hero .btn{border-color:#fff;box-shadow:3px 3px 0 #fff}
+.card{border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);border-radius:20px;position:relative;overflow:hidden}
+.card.lock{background:repeating-linear-gradient(135deg,var(--card) 0 12px,var(--line) 12px 14px);box-shadow:none;opacity:.8}
+.grid{counter-reset:n}.grid .card{counter-increment:n}
+.grid .card::after{content:counter(n);position:absolute;right:14px;top:-4px;font:800 92px 'Bricolage Grotesque',sans-serif;color:var(--line);line-height:1;pointer-events:none}
+.grid .card>*{position:relative;z-index:1}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:6px 0 18px}
+.stat{border:2px solid var(--ink);border-radius:18px;padding:14px 16px;box-shadow:4px 4px 0 var(--ink);color:#17123f;font-weight:600}
+.stat b{display:block;font:800 42px 'Bricolage Grotesque',sans-serif;line-height:1}
+.stat:nth-child(1){background:#ffb3d1}.stat:nth-child(2){background:#9fecdc}.stat:nth-child(3){background:#cfc2ff}
+.bd{border:2px solid var(--ink);font-weight:600}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;margin:8px 0 26px}
+.g{border:2px solid var(--ink);border-radius:16px;padding:14px 8px;text-align:center;box-shadow:3px 3px 0 var(--ink);display:flex;flex-direction:column;gap:4px;align-items:center;transition:transform .1s,box-shadow .1s}
+.g::before{content:attr(data-i);font-size:30px;line-height:1.1}
+.g[aria-selected=true]{transform:translate(3px,3px);box-shadow:none}
+.pane .card{padding:0 0 22px}
+.pane .card>*{margin-left:22px;margin-right:22px}
+.pane .card>h3{margin:0 0 16px;padding:16px 22px;border-bottom:2px solid var(--ink);font-size:28px;color:#17123f}
+.pane #g-prompt>h3{background:#ffb3d1}.pane #g-pipe>h3{background:#9fecdc}.pane #g-git>h3{background:#cfc2ff}.pane #g-quiz>h3{background:#ffe08a}.pane #g-ref>h3{background:#ffc9a8}
+#g-prompt>h3::before{content:'🩺 '}#g-pipe>h3::before{content:'🚀 '}#g-git>h3::before{content:'🔀 '}#g-quiz>h3::before{content:'⚡ '}#g-ref>h3::before{content:'💭 '}
+.pane .bar{margin-left:22px;margin-right:22px;height:14px;border:2px solid var(--ink)}
+.opt{border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);transition:transform .1s}
+.opt:hover{transform:translate(-1px,-1px)}
+.ing{border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);position:relative;padding-left:46px;flex:1 1 260px}
+.ing::before{content:'';position:absolute;left:12px;top:50%;width:22px;height:22px;margin-top:-11px;border:2px solid var(--ink);border-radius:7px;background:var(--bg);color:#17123f;text-align:center;font-weight:800;line-height:18px}
+.ing[aria-pressed=true]{background:var(--vio)}
+.ing[aria-pressed=true]::before{content:'✓';background:#3df0d0}
+.bad{position:relative;padding-top:36px;border:2px solid var(--ink)}
+.bad::before{content:'● ● ●';position:absolute;left:14px;top:8px;font-size:11px;letter-spacing:4px;color:#ff3d8b}
+.meter{font-weight:600;font-size:14px;margin-bottom:-4px}
+.seq li{border:2px dashed var(--ink)}
+.seq li.f{background:#9fecdc;color:#17123f;border-style:solid;font-weight:600}
+.pair{background:var(--pc)!important;color:#17123f;border-color:var(--ink)!important}
+#qbox{counter-reset:o}
+#qbox p{font:800 24px/1.2 'Bricolage Grotesque',sans-serif;margin:0 0 6px}
+#qbox .opt{counter-increment:o;display:flex;gap:12px;align-items:center}
+#qbox .opt::before{content:counter(o,upper-alpha);flex:none;width:30px;height:30px;border-radius:9px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-weight:800}
+.stick{position:relative;padding-top:22px;box-shadow:3px 4px 0 #0003}
+.stick::before{content:'';position:absolute;top:-8px;left:50%;width:54px;height:16px;margin-left:-27px;background:#ffffffb0;transform:rotate(-3deg);border:1px solid #0002}
+.cf{position:fixed;top:-14px;width:10px;height:14px;z-index:99;pointer-events:none;animation:fall 1.8s ease-in forwards}
+@keyframes fall{to{transform:translateY(108vh) rotate(540deg)}}
+@media (prefers-reduced-motion:reduce){.cf{display:none}.ticker span{animation:none}}
+@media (max-width:720px){.stats{grid-template-columns:1fr}.stat b{font-size:34px}}
+body{background:radial-gradient(700px 420px at 95% 0,#ff3d8b22,transparent 65%),radial-gradient(600px 420px at 0 40%,#14c9b01f,transparent 65%),radial-gradient(var(--line) 1.2px,transparent 1.5px) 0 0/22px 22px,var(--bg)}
+.ticker{background:linear-gradient(90deg,#17123F,#2a1a7a 60%,#5b3df5);color:#f1edff}
+.tab[aria-selected=true]{background:linear-gradient(90deg,#ff3d8b,#5b3df5);color:#fff}
+.g[aria-selected=true]{background:linear-gradient(135deg,#5b3df5,#ff6fa8);color:#fff}
+.pane .card>h3{color:#fff;text-shadow:0 1px 0 #0003}
+.pane #g-prompt>h3{background:linear-gradient(90deg,#ff6fa8,#8a6cf7)}.pane #g-pipe>h3{background:linear-gradient(90deg,#2cc4ae,#7d62f7)}.pane #g-git>h3{background:linear-gradient(90deg,#7d62f7,#ff6fa8)}.pane #g-quiz>h3{background:linear-gradient(90deg,#ff9a5c,#ff6fa8)}.pane #g-ref>h3{background:linear-gradient(90deg,#2cc4ae,#ff6fa8)}
+[hidden]{display:none!important}
+@media (max-width:720px){.cols{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.pane #h-chain>h3{background:linear-gradient(90deg,#ff6fa8,#8a6cf7)}.pane #h-roles>h3{background:linear-gradient(90deg,#2cc4ae,#7d62f7)}.pane #h-brief>h3{background:linear-gradient(90deg,#7d62f7,#ff6fa8)}.pane #h-quiz2>h3{background:linear-gradient(90deg,#ff9a5c,#ff6fa8)}.pane #h-ref2>h3{background:linear-gradient(90deg,#2cc4ae,#ff6fa8)}
+#h-chain>h3::before{content:'🔗 '}#h-roles>h3::before{content:'🧩 '}#h-brief>h3::before{content:'📝 '}#h-quiz2>h3::before{content:'⚡ '}#h-ref2>h3::before{content:'💭 '}
+#qbox2{counter-reset:o}#qbox2 p{font:800 24px/1.2 'Bricolage Grotesque',sans-serif;margin:0 0 6px}#qbox2 .opt{counter-increment:o;display:flex;gap:12px;align-items:center}#qbox2 .opt::before{content:counter(o,upper-alpha);flex:none;width:30px;height:30px;border-radius:9px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-weight:800}
+</style>
+</head>
+<body>
+<nav><div class="wrap" role="tablist" id="tabs"><span class="logo">Platform Voices</span></div></nav>
+
+<section class="hero" id="homehero"><div class="wrap">
+ <h1>Platform <span>Voices</span></h1>
+ <p>One tab per guest session. Play the games, earn XP, and lock in what each speaker taught you.</p>
+ <button class="btn" data-go="s1">Play Session 1</button> <button class="btn s" data-go="s2">Play Session 2</button>
+</div></section>
+<div class="ticker" id="tick" aria-hidden="true"><span>Prompt ✦ Design ✦ Build ✦ Commit ✦ Push ✦ Deploy ✦ Reflect ✦ Prompt ✦ Design ✦ Build ✦ Commit ✦ Push ✦ Deploy ✦ Reflect ✦ Brief ✦ Strategy ✦ Visuals ✦ Review ✦ Prompt ✦ Design ✦ Build ✦ Commit ✦ Push ✦ Deploy ✦ Reflect ✦ Brief ✦ Strategy ✦ Visuals ✦ Review ✦ </span></div>
+
+<main><div class="wrap">
+ <div id="p-home">
+  <h2>Your progress</h2>
+  <div class="stats"><div class="stat"><b id="sxp">0</b>XP earned</div><div class="stat"><b id="sbd">0/10</b>badges</div><div class="stat"><b>2</b>sessions open</div></div>
+  <div class="badges" id="badges"></div>
+  <h2 style="margin-top:36px">Sessions</h2>
+  <p class="sub">New sessions unlock after each guest talk. Add them to the SESSIONS list in the code.</p>
+  <div class="grid" id="cards"></div>
+ </div>
+
+ <div id="p-s1" class="pane" hidden>
+  <span class="pill">Session 1 · LaunchLab × ESSEC · 9 Oct</span>
+  <h2>Vibe coding: Design, Build, Ship</h2>
+  <p class="sub">Claude Design, Claude Code, GitHub and Vercel. Finish all five games to earn every badge.</p>
+  <div class="games" role="tablist" id="gtabs"></div>
+
+  <div class="card" id="g-prompt">
+   <h3>Prompt Doctor</h3>
+   <p class="sub">This prompt is weak. Add only the ingredients a strong prompt needs, then run the check.</p>
+   <div class="bad">“Create a modern website for my coding course with a homepage and lessons.”</div>
+   <div class="meter"><span id="mlab">0 of 9 chosen</span></div><div class="bar"><i id="mbar"></i></div>
+   <div class="chipset" id="ings"></div>
+   <button class="btn" id="chk">Check my prompt</button>
+   <div class="fb" id="pfb" aria-live="polite"></div>
+  </div>
+
+  <div class="card" id="g-pipe" hidden>
+   <h3>Ship it: build the pipeline</h3>
+   <p class="sub">Tap the steps in the order a project goes from idea to live site.</p>
+   <div class="cols"><div id="pool"></div><ol class="seq" id="seq" style="padding:0;margin:10px 0"></ol></div>
+   <div class="fb" id="sfb" aria-live="polite"></div><button class="btn s" id="sreset">Reset</button>
+  </div>
+
+  <div class="card" id="g-git" hidden>
+   <h3>Git match</h3>
+   <p class="sub">Tap a term, then tap its meaning. Match all six.</p>
+   <div class="cols"><div id="terms"></div><div id="defs"></div></div>
+   <div class="fb" id="mfb" aria-live="polite"></div>
+  </div>
+
+  <div class="card" id="g-quiz" hidden>
+   <h3>Rapid-fire quiz</h3>
+   <div class="bar"><i id="qbar"></i></div>
+   <div id="qbox"></div><div class="fb" id="qfb" aria-live="polite"></div>
+   <button class="btn s" id="qnext" hidden>Next</button>
+  </div>
+
+  <div class="card" id="g-ref" hidden>
+   <h3>Reflection wall</h3>
+   <p class="sub">What changed in how you think about building with AI? Notes stay in your browser only.</p>
+   <label for="rt">Your takeaway</label>
+   <textarea id="rt" rows="3" maxlength="160" placeholder="I used to think… now I think…"></textarea>
+   <button class="btn" id="radd" style="margin-top:10px">Post to the wall</button>
+   <div class="wall" id="wall"></div>
+  </div>
+ </div>
+ <div id="p-s2" class="pane" hidden>
+  <span class="pill">Session 2 · Yellow Pages × ESSEC · 30 Oct</span>
+  <h2>Building an AI Marketing Team</h2>
+  <p class="sub">Nick Goh (CEO of INSPIRO Consulting, CMO of Yellow Pages Singapore) showed a lite agentic workflow with Claude, from brief to key visual, using a Louis Vuitton “Terra” launch. Finish all five games to earn every badge.</p>
+  <div class="games" role="tablist" id="gtabs2"></div>
+
+  <div class="card" id="h-chain">
+   <h3>The handoff chain</h3>
+   <p class="sub">Tap the steps in the order work flows through the AI team, from first draft to brand-voice check.</p>
+   <div class="cols"><div id="cpool"></div><ol class="seq" id="cseq" style="padding:0;margin:10px 0"></ol></div>
+   <div class="fb" id="cfb" aria-live="polite"></div><button class="btn s" id="creset">Reset</button>
+  </div>
+
+  <div class="card" id="h-roles" hidden>
+   <h3>Role match</h3>
+   <p class="sub">Tap a team member, then tap what they do. Match all six.</p>
+   <div class="cols"><div id="rterms"></div><div id="rdefs"></div></div>
+   <div class="fb" id="rfb" aria-live="polite"></div>
+  </div>
+
+  <div class="card" id="h-brief" hidden>
+   <h3>Brief Doctor</h3>
+   <p class="sub">This brief would fail the Brief Validator. Add only what a strong brief needs, then run the check.</p>
+   <div class="bad">“Make some social posts for the new Louis Vuitton handbag.”</div>
+   <div class="meter"><span id="blab">0 of 8 chosen</span></div><div class="bar"><i id="bbar"></i></div>
+   <div class="chipset" id="bings"></div>
+   <button class="btn" id="bchk">Check my brief</button>
+   <div class="fb" id="bfb" aria-live="polite"></div>
+  </div>
+
+  <div class="card" id="h-quiz2" hidden>
+   <h3>Rapid-fire quiz</h3>
+   <div class="bar"><i id="qbar2"></i></div>
+   <div id="qbox2"></div><div class="fb" id="qfb2" aria-live="polite"></div>
+   <button class="btn s" id="qnext2" hidden>Next</button>
+  </div>
+
+  <div class="card" id="h-ref2" hidden>
+   <h3>Reflection wall</h3>
+   <p class="sub">Which step of the AI team would you trust least without a human check, and why? Notes stay in your browser only.</p>
+   <label for="rt2">Your takeaway</label>
+   <textarea id="rt2" rows="3" maxlength="160" placeholder="I would never skip a human check on… because…"></textarea>
+   <button class="btn" id="radd2" style="margin-top:10px">Post to the wall</button>
+   <div class="wall" id="wall2"></div>
+  </div>
+ </div>
+</div></main>
+
+<script>
+var SESSIONS=[
+ {id:'s1',title:'Vibe coding',sub:'Claude Design, Claude Code, GitHub, Vercel',when:'Session 1 · 9 Oct'},
+ {id:'s2',title:'AI Marketing Team',sub:'Claude agents, briefs, key visuals',when:'Session 2 · 30 Oct'},
+ {id:'s3',title:'Coming soon',sub:'Next guest speaker',when:'Session 3',lock:1}];
+var xp=0,done={},GOALS=5;
+function $(i){return document.getElementById(i)}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function confetti(){var C=['#ff3d8b','#5b3df5','#3df0d0','#ffb86b'];for(var i=0;i<44;i++){var d=document.createElement('i');d.className='cf';d.style.cssText='left:'+(Math.random()*100)+'vw;background:'+C[i%4]+';animation-delay:'+(Math.random()*.4)+'s';document.body.appendChild(d);setTimeout(function(x){x.remove()},2400,d)}}
+function award(id,p){if(done[id])return;done[id]=1;xp+=p;refresh();confetti()}
+function flash(b){b.classList.add('no','shake');setTimeout(function(){b.classList.remove('no','shake')},400)}
+/* tabs */
+var tabs=$('tabs'),tabEls={};
+function mkTab(id,label,lock){var b=el('button','tab',label);b.setAttribute('role','tab');b.setAttribute('aria-selected','false');if(lock)b.disabled=true;b.onclick=function(){go(id)};tabs.appendChild(b);tabEls[id]=b}
+mkTab('home','Home');
+SESSIONS.forEach(function(s){mkTab(s.id,s.lock?s.when+' 🔒':s.when.split(' · ')[0]+': '+s.title,s.lock)});
+var xpEl=el('span','xp','');tabs.appendChild(xpEl);
+function go(id){for(var k in tabEls)tabEls[k].setAttribute('aria-selected',String(k===id));
+ $('p-home').hidden=id!=='home';$('p-s1').hidden=id!=='s1';$('p-s2').hidden=id!=='s2';$('homehero').hidden=id!=='home';$('tick').hidden=id!=='home';window.scrollTo(0,0)}
+document.querySelectorAll('[data-go]').forEach(function(b){b.onclick=function(){go(b.dataset.go)}});
+/* home */
+SESSIONS.forEach(function(s){var c=el('div','card'+(s.lock?' lock':''));c.appendChild(el('span','pill',s.when));c.appendChild(el('h3','',s.title));c.appendChild(el('p','sub',s.sub));
+ if(!s.lock){var b=el('button','btn s','Open games');b.onclick=function(){go(s.id)};c.appendChild(b)}$('cards').appendChild(c)});
+var G=[['prompt','Prompt Doctor','🩺'],['pipe','Ship it','🚀'],['git','Git match','🔀'],['quiz','Quiz','⚡'],['ref','Reflect','💭']];
+function refresh(){xpEl.textContent='⭐ '+xp+' XP';$('sxp').textContent=xp;$('sbd').textContent=Object.keys(done).length+'/10';
+ $('badges').innerHTML='';G.concat(G2).forEach(function(b){$('badges').appendChild(el('span','bd'+(done[b[0]]?' on':''),(done[b[0]]?'✓ ':'')+b[1]))});
+ [].slice.call($('gtabs').children).concat([].slice.call($('gtabs2').children)).forEach(function(g){g.textContent=g.dataset.n+(done[g.dataset.k]?' ✓':'')})}
+G.forEach(function(g,i){var b=el('button','g',g[1]);b.dataset.k=g[0];b.dataset.n=g[1];b.dataset.i=g[2];b.setAttribute('role','tab');b.setAttribute('aria-selected',String(i===0));
+ b.onclick=function(){G.forEach(function(x){$('g-'+x[0]).hidden=x[0]!==g[0]});[].forEach.call($('gtabs').children,function(c){c.setAttribute('aria-selected',String(c===b))})};$('gtabs').appendChild(b)});
+/* Prompt Doctor */
+var ING=[['Role: “You are an expert educational web designer and full-stack developer.”',1],['Goal: a responsive website for a 15-lesson course',1],['Target audience: high-school students with no coding experience',1],['Core pages: landing, curriculum, lesson template, about, resources',1],['Design style: playful, light background, bold headings',1],['Output required: folder structure, core code, reusable lesson template',1],['Key features: mobile-first, clear call-to-action buttons',1],['Make it look really cool',0],['Use lots of impressive buzzwords',0]];
+var on={};
+shuffle(ING.map(function(x,i){return i})).forEach(function(i){var b=el('button','ing',ING[i][0]);b.setAttribute('aria-pressed','false');b.onclick=function(){on[i]=!on[i];b.setAttribute('aria-pressed',String(!!on[i]));var n=Object.keys(on).filter(function(k){return on[k]}).length;$('mlab').textContent=n+' of 9 chosen';$('mbar').style.width=(n/9*100)+'%'};$('ings').appendChild(b)});
+$('chk').onclick=function(){var hit=0,miss=0,junk=0;ING.forEach(function(x,i){if(x[1]&&on[i])hit++;if(x[1]&&!on[i])miss++;if(!x[1]&&on[i])junk++});
+ var f=$('pfb');if(hit===7&&!junk){f.textContent='Prompt cured. A specific role, goal, audience, pages, style, output and features give Claude something real to build.';award('prompt',30)}
+ else f.textContent=hit+'/7 key ingredients. '+(junk?'Vague phrases like “make it cool” add nothing. ':'')+(miss?miss+' essential ingredient'+(miss>1?'s are':' is')+' missing.':'')};
+/* Pipeline */
+var STEPS=['Describe your design in Claude Design','Share → “Handoff to Claude Code…”','Create a new repository on GitHub','Ask Claude Code to push the project','Import the repo in Vercel','Click Deploy and get a live link'],pn=0;
+function drawSeq(){$('pool').innerHTML='';$('seq').innerHTML='';pn=0;$('sfb').textContent='';
+ STEPS.forEach(function(){$('seq').appendChild(el('li','',''))});
+ shuffle(STEPS.map(function(s,i){return i})).forEach(function(i){var b=el('button','opt',STEPS[i]);b.style.marginTop='0';b.style.marginBottom='8px';b.onclick=function(){
+  if(i===pn){var li=$('seq').children[pn];li.textContent=(pn+1)+'. '+STEPS[i];li.className='f';b.hidden=true;pn++;
+   if(pn===STEPS.length){$('sfb').textContent='Shipped! From now on, every push to GitHub updates your live site automatically.';award('pipe',30)}else $('sfb').textContent=''}
+  else{flash(b);$('sfb').textContent='Not yet. Hint: '+(pn<2?'start in the design tool.':pn<4?'your code must reach GitHub first.':'Vercel only hosts what GitHub already holds.')}};$('pool').appendChild(b)})}
+$('sreset').onclick=drawSeq;drawSeq();
+/* Git match */
+var T=[['Fork','Your own copy of someone else’s repo on GitHub'],['Clone','Copy a repo from GitHub down to your computer'],['Commit','Save a snapshot locally, not on GitHub'],['Push','Send your saved commits up to GitHub'],['Pull Request','Propose changes and ask teammates to review'],['Merge','Approve and combine changes into the main project']];
+var selT=null,matched=0,PAL=['#ffb3d1','#9fecdc','#cfc2ff','#ffe08a','#ffc9a8','#b8e2ff'];
+shuffle(T.map(function(x,i){return i})).forEach(function(i){var b=el('button','opt',T[i][0]);b.dataset.i=i;b.onclick=function(){if(b.classList.contains('ok'))return;[].forEach.call($('terms').children,function(c){c.classList.remove('sel')});selT=b;b.classList.add('sel')};$('terms').appendChild(b)});
+shuffle(T.map(function(x,i){return i})).forEach(function(i){var b=el('button','opt',T[i][1]);b.onclick=function(){if(!selT||b.classList.contains('ok'))return;
+ if(+selT.dataset.i===i){var pc=PAL[matched%6];selT.style.setProperty('--pc',pc);b.style.setProperty('--pc',pc);selT.classList.remove('sel');selT.classList.add('ok','pair');b.classList.add('ok','pair');selT=null;matched++;$('mfb').textContent=matched+'/6 matched';if(matched===6){$('mfb').textContent='All matched. Most Git actions just move work between your computer and GitHub.';award('git',30)}}
+ else{flash(b);$('mfb').textContent='Not that one. Try again.'}};$('defs').appendChild(b)});
+/* Quiz */
+var Q=[
+['Which file do you open to change the text on your main button?',['index.html','styles.css','script.js'],0,'index.html holds the words and structure.'],
+['Which file makes that button orange?',['index.html','styles.css','script.js'],1,'styles.css controls colours, fonts and spacing.'],
+['Which file makes the button do something when clicked?',['index.html','styles.css','script.js'],2,'script.js is behaviour.'],
+['You work solo on your own branch and trust your changes. Best move?',['Push','Pull request','Fork'],0,'Push uploads straight, with no review.'],
+['You want to contribute to a teammate’s project. Best move?',['Push straight to main','Open a pull request','Clone only'],1,'A pull request invites review before merging.'],
+['After a commit, where is your snapshot saved?',['On GitHub','Only on your computer','On Vercel'],1,'A commit stays local until you push.'],
+['What turns your GitHub code into a public website?',['GitHub alone','Vercel','Fork'],1,'GitHub stores code. Vercel builds and hosts it.'],
+['What does Vercel give every pull request?',['Its own preview link','A new repo','A password'],0,'Teammates can see changes before merging.'],
+['Where is “Handoff to Claude Code…” in Claude Design?',['Share menu, top right','Settings','Comments'],0,'Find it before you start building.'],
+['What is a login token?',['Your plain password','A temporary sticker saying who you are','A database table'],1,'The browser shows it on every request, so you don’t retype your password.'],
+['Why does a Wordle clone forget you when you close the tab?',['It has no backend or database','Browsers delete code','GitHub blocks it'],0,'Add a backend such as Supabase for users and saved games.'],
+['For tiiny.host, what must sit at the top level of your zip?',['README.md','index.html','script.js'],1,'index.html at the top level, so it can host the site.']];
+var qi=0,qs=0,qdeck,qend=false;
+function qStart(){qdeck=shuffle(Q).slice(0,8);qi=0;qs=0;qend=false;qShow()}
+function qShow(){var q=qdeck[qi],b=$('qbox'),locked=false;$('qbar').style.width=(qi/qdeck.length*100)+'%';$('qfb').textContent='';$('qnext').hidden=true;b.innerHTML='';
+ b.appendChild(el('p','',(qi+1)+' of '+qdeck.length+' · '+q[0]));
+ shuffle(q[1].map(function(t,i){return i})).forEach(function(i){var o=el('button','opt',q[1][i]);o.onclick=function(){if(locked)return;locked=true;var good=i===q[2];o.classList.add(good?'ok':'no');
+  if(!good)[].forEach.call(b.querySelectorAll('.opt'),function(x){if(x.textContent===q[1][q[2]])x.classList.add('ok')});
+  if(good)qs++;$('qfb').textContent=(good?'Correct. ':'Not quite. ')+q[3];$('qnext').hidden=false;$('qnext').textContent=qi<qdeck.length-1?'Next':'See score'};b.appendChild(o)})}
+$('qnext').onclick=function(){if(qend){qStart();return}
+ if(qi<qdeck.length-1){qi++;qShow();return}
+ qend=true;$('qbar').style.width='100%';$('qbox').innerHTML='';$('qbox').appendChild(el('h3','','You scored '+qs+' / '+qdeck.length));
+ $('qnext').textContent='Play again';$('qfb').textContent=qs>=6?'Quiz Champ badge earned.':'Score 6 or more to earn the badge. Try again.';if(qs>=6)award('quiz',40)};
+qStart();
+/* Wall */
+$('radd').onclick=function(){var t=$('rt'),v=t.value.trim();if(!v){t.focus();return}var d=el('div','stick');d.appendChild(el('b','','Session 1'));d.appendChild(document.createTextNode(v));$('wall').prepend(d);t.value='';award('ref',20)};
+/* ===== Session 2 ===== */
+var G2=[['chain','Handoff chain','🔗'],['roles','Role match','🧩'],['brief','Brief Doctor','📝'],['quiz2','AI Quiz','⚡'],['ref2','Reflect','💭']];
+G2.forEach(function(g,i){var b=el('button','g',g[1]);b.dataset.k=g[0];b.dataset.n=g[1];b.dataset.i=g[2];b.setAttribute('role','tab');b.setAttribute('aria-selected',String(i===0));
+ b.onclick=function(){G2.forEach(function(x){$('h-'+x[0]).hidden=x[0]!==g[0]});[].forEach.call($('gtabs2').children,function(c){c.setAttribute('aria-selected',String(c===b))})};$('gtabs2').appendChild(b)});
+/* Handoff chain */
+var CH=['Brief Writer drafts the brief from Project context','Brief Validator critiques it in a fresh chat','Strategist digests the brief and shapes the Big Idea','You approve and save it to the knowledge base','Designer and Copywriter create key visuals and channel copy','Reviewer checks brand voice and signs off'],cn=0;
+function drawCh(){$('cpool').innerHTML='';$('cseq').innerHTML='';cn=0;$('cfb').textContent='';
+ CH.forEach(function(){$('cseq').appendChild(el('li','',''))});
+ shuffle(CH.map(function(s,i){return i})).forEach(function(i){var b=el('button','opt',CH[i]);b.style.marginTop='0';b.style.marginBottom='8px';b.onclick=function(){
+  if(i===cn){var li=$('cseq').children[cn];li.textContent=(cn+1)+'. '+CH[i];li.className='f';b.hidden=true;cn++;
+   if(cn===CH.length){$('cfb').textContent='Chain complete. The validator uses fresh eyes, and a human approves before production starts.';award('chain',30)}else $('cfb').textContent=''}
+  else{flash(b);$('cfb').textContent='Not yet. Hint: '+(cn<3?'the planning team goes first: write, validate, then shape the idea.':cn===3?'a human approves and saves before production begins.':'production creates, then a reviewer checks.')}};$('cpool').appendChild(b)})}
+$('creset').onclick=drawCh;drawCh();
+/* Role match */
+var R=[['Brief Writer','Drafts the brief from Project context, needing goal, audience, budget and timing'],['Brief Validator','Critiques the brief in a fresh chat and returns a verdict with top fixes'],['Strategist','Digests the validated brief and delivers a Big Idea one-pager'],['Designer / Art Director','Creates key visual concepts and assets, for example with Higgsfield'],['Copywriter','Builds the messaging hierarchy and channel-by-channel copy'],['Reviewer','Checks work against brand voice and gives edits and sign-off']];
+var selR=null,mR=0;
+shuffle(R.map(function(x,i){return i})).forEach(function(i){var b=el('button','opt',R[i][0]);b.dataset.i=i;b.onclick=function(){if(b.classList.contains('ok'))return;[].forEach.call($('rterms').children,function(c){c.classList.remove('sel')});selR=b;b.classList.add('sel')};$('rterms').appendChild(b)});
+shuffle(R.map(function(x,i){return i})).forEach(function(i){var b=el('button','opt',R[i][1]);b.onclick=function(){if(!selR||b.classList.contains('ok'))return;
+ if(+selR.dataset.i===i){var pc=PAL[mR%6];selR.style.setProperty('--pc',pc);b.style.setProperty('--pc',pc);selR.classList.remove('sel');selR.classList.add('ok','pair');b.classList.add('ok','pair');selR=null;mR++;$('rfb').textContent=mR+'/6 matched';if(mR===6){$('rfb').textContent='All matched. Planning team: Writer, Validator, Strategist. Production team: Designer, Copywriter, Reviewer.';award('roles',30)}}
+ else{flash(b);$('rfb').textContent='Not that one. Try again.'}};$('rdefs').appendChild(b)});
+/* Brief Doctor */
+var BI=[['Goal: introduce Terra to Singapore audiences and build desire',1],['Objective with a measurable success metric',1],['Target audience: who the posts are for',1],['Budget: what the campaign can spend',1],['Timing: launch date and campaign window',1],['Core message: the one thing people should remember',1],['Make it go viral',0],['Use lots of trendy hashtags',0]],onB={};
+shuffle(BI.map(function(x,i){return i})).forEach(function(i){var b=el('button','ing',BI[i][0]);b.setAttribute('aria-pressed','false');b.onclick=function(){onB[i]=!onB[i];b.setAttribute('aria-pressed',String(!!onB[i]));var n=Object.keys(onB).filter(function(k){return onB[k]}).length;$('blab').textContent=n+' of 8 chosen';$('bbar').style.width=(n/8*100)+'%'};$('bings').appendChild(b)});
+$('bchk').onclick=function(){var hit=0,miss=0,junk=0;BI.forEach(function(x,i){if(x[1]&&onB[i])hit++;if(x[1]&&!onB[i])miss++;if(!x[1]&&onB[i])junk++});
+ var f=$('bfb');if(hit===6&&!junk){f.textContent='Brief approved. Goal, metric, audience, budget, timing and message give every agent in the chain something concrete to work from.';award('brief',30)}
+ else f.textContent=hit+'/6 key elements. '+(junk?'“Go viral” and “trendy hashtags” are wishes, not brief content. ':'')+(miss?miss+' essential element'+(miss>1?'s are':' is')+' missing.':'')};
+/* Quiz 2 */
+var Q2=[
+['Why does the Brief Validator critique the brief in a fresh chat?',['Fresh eyes, free of the drafting chat’s bias','It uses fewer tokens','Claude forgets the Project'],0,'A new chat has no stake in the first draft, so the critique is more honest.'],
+['Who digests the validated brief and shapes the Big Idea?',['Reviewer','Strategist','Copywriter'],1,'The Strategist outputs a Big Idea one-pager.'],
+['Where do you save the approved brief and research for later agents?',['The knowledge base','A browser bookmark','An email draft'],0,'Saving it means every later agent works from the same approved context.'],
+['How does the Marketing Brief Builder run without being prompted?',['Manual copy and paste','A scheduled daily task that emails the brief','A new Claude model'],1,'It was set as an active daily scheduled task.'],
+['Which step sits between the planning team and production?',['You approve','Nothing, it is automatic','The Reviewer'],0,'The human approves and saves before designer and copywriter start.'],
+['What was the headline of the Terra social launch?',['Since 1854.','Nothing to explain.','Carry the desert.'],1,'“Nothing to explain.” led, with “Discover Terra” as the call to action.'],
+['Which tool generated the key visuals in the demo?',['Higgsfield / Cinema Studio','Excel','GitHub'],0,'Claude plans and writes, while image tools like Higgsfield generate the visuals.'],
+['What does the Creative Score step do?',['Posts to Instagram for you','Scores the work through agency-style lenses and suggests improvements','Translates captions'],1,'Terra scored 6.7/10 against BBH, Ogilvy and McCann lenses, then a revised version scored higher.']];
+var qi2=0,qs2=0,qd2,qe2=false;
+function qStart2(){qd2=shuffle(Q2);qi2=0;qs2=0;qe2=false;qShow2()}
+function qShow2(){var q=qd2[qi2],b=$('qbox2'),locked=false;$('qbar2').style.width=(qi2/qd2.length*100)+'%';$('qfb2').textContent='';$('qnext2').hidden=true;b.innerHTML='';
+ b.appendChild(el('p','',(qi2+1)+' of '+qd2.length+' · '+q[0]));
+ shuffle(q[1].map(function(t,i){return i})).forEach(function(i){var o=el('button','opt',q[1][i]);o.onclick=function(){if(locked)return;locked=true;var good=i===q[2];o.classList.add(good?'ok':'no');
+  if(!good)[].forEach.call(b.querySelectorAll('.opt'),function(x){if(x.textContent===q[1][q[2]])x.classList.add('ok')});
+  if(good)qs2++;$('qfb2').textContent=(good?'Correct. ':'Not quite. ')+q[3];$('qnext2').hidden=false;$('qnext2').textContent=qi2<qd2.length-1?'Next':'See score'};b.appendChild(o)})}
+$('qnext2').onclick=function(){if(qe2){qStart2();return}
+ if(qi2<qd2.length-1){qi2++;qShow2();return}
+ qe2=true;$('qbar2').style.width='100%';$('qbox2').innerHTML='';$('qbox2').appendChild(el('h3','','You scored '+qs2+' / '+qd2.length));
+ $('qnext2').textContent='Play again';$('qfb2').textContent=qs2>=6?'AI Quiz badge earned.':'Score 6 or more to earn the badge. Try again.';if(qs2>=6)award('quiz2',40)};
+qStart2();
+/* Wall 2 */
+$('radd2').onclick=function(){var t=$('rt2'),v=t.value.trim();if(!v){t.focus();return}var d=el('div','stick');d.appendChild(el('b','','Session 2'));d.appendChild(document.createTextNode(v));$('wall2').prepend(d);t.value='';award('ref2',20)};
+refresh();go('home');
+</script>
+</body>
+</html>
